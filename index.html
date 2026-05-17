@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>InnovAula | Transformando la Educación</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="InnovAula: Innovación tecnológica, servicios editoriales y biblioteca académica.">
+    <meta name="theme-color" content="#0d97a7">
+
+    <!-- Tipografía e Iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" ="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d97a7;
+            --primary-dark: #0a7a87;
+            --secondary: #4f46e5;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --glass: rgba(255, 255, 255, 0.95);
+            --card-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            --radius: 24px;
+        }
+
+        .dark {
+            --light: #020617;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.4s ease, color 0.4s ease; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+
+        .wrap { width: min(92%, 1200px); margin: auto; }
+        section { padding: 100px 0; }
+/* Contenedor principal de tarjetas */
+.social-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Estilo base de la tarjeta */
+.social-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-right: 15px;
+    font-size: 24px;
+    color: white;
+}
+
+.social-text span {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.social-text small {
+    display: block;
+    opacity: 0.6;
+}
+
+/* Colores personalizados por red social */
+.whatsapp .social-icon { background: #25D366; }
+.facebook .social-icon { background: #1877F2; }
+.tiktok .social-icon { background: #000; }
+
+/* Efecto Hover */
+.social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: var(--primary);
+}
+
+.social-card:hover .social-icon {
+    transform: scale(1.1);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .social-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 0.8rem 0; backdrop-filter: blur(15px);
+            background: var(--glass); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo-main { height: 50px; width: auto; }
+
+        .nav-links { display: flex; gap: 1.8rem; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- Slider Cinemático --- */
+        .hero-slider { position: relative; height: 85vh; overflow: hidden; background: #000; }
+        .slide { 
+            position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out; 
+            background-size: cover; background-position: center;
+        }
+        .slide.active { opacity: 0.6; animation: kenBurns 10s infinite alternate; }
+        @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.15); } }
+
+        .slider-content { 
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; 
+            text-align: center; color: white; z-index: 10;
+        }
+        .slider-content h1 { font-size: clamp(2.5rem, 7vw, 4.2rem); font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; }
+
+        /* --- Cards & Servicios --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); padding: 40px; border-radius: var(--radius); box-shadow: var(--card-shadow); border: 1px solid rgba(0,0,0,0.03); cursor: pointer; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .icon-box { width: 55px; height: 55px; background: rgba(13, 151, 167, 0.1); color: var(--primary); border-radius: 15px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+
+        /* --- Modal Servicios --- */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--light); border-radius: var(--radius); max-width: 850px; width: 100%; position: relative; overflow: hidden; animation: zoomIn 0.3s ease; }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .modal-text { padding: 45px; display: flex; flex-direction: column; justify-content: center; }
+        .modal-img { width: 100%; height: 100%; object-fit: cover; min-height: 350px; }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        /* --- Nosotros --- */
+        .nosotros-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .mv-card { display: flex; gap: 20px; margin-bottom: 30px; }
+
+        /* --- Biblioteca --- */
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
+        .book-card { background: var(--glass); border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); text-align: center; }
+        .book-img { width: 100%; height: 320px; object-fit: cover; transition: 0.5s; }
+        .book-card:hover .book-img { transform: scale(1.05); }
+        .btn-download { background: var(--primary); color: white; padding: 12px; text-decoration: none; display: block; font-weight: 700; }
+
+        /* --- Contacto & Redes --- */
+        .contact-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--card-shadow); }
+        .contact-form { padding: 60px; background: var(--glass); }
+        .contact-info { background: var(--dark); color: white; padding: 60px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .input-field { width: 100%; padding: 12px 0; background: transparent; border: none; border-bottom: 2px solid #ddd; outline: none; margin-bottom: 30px; font-family: inherit; color: inherit; }
+        .input-field:focus { border-color: var(--primary); }
+
+        .social-links { display: flex; gap: 15px; margin-top: 25px; }
+        .social-btn { width: 45px; height: 45px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; transition: 0.3s; background: rgba(255,255,255,0.1); }
+        .social-btn:hover { transform: translateY(-5px); background: var(--primary); }
+
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.3); }
+
+        @media (max-width: 900px) { .modal-grid, .nosotros-layout, .contact-container { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="wrap nav">
+            <a href="#inicio"><img src="innovAula-logo.png" alt="InnovAula" class="logo-main"></a>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#quienes">Nosotros</a>
+                <a href="#biblioteca">Biblioteca</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button id="theme-toggle" style="background:none; border:none; cursor:pointer; color:var(--text-main)"><i data-lucide="moon"></i></button>
+        </div>
+    </header>
+
+    <!-- Slider Cinemático -->
+    <section class="hero-slider" id="inicio">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://lh3.googleusercontent.com/u/0/d/1ex-rU2DYAWF3Zw0cOptqYCuthaGHtmpG')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slider-content">
+            <div class="wrap" data-aos="fade-up">
+                <h1 id="slide-title">Transformando la educación <br> y construyendo el futuro</h1>
+                <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 2rem;">Innovación y Desarrollo</p>
+                <a href="#servicios" style="background:var(--primary); color:white; padding:15px 35px; border-radius:50px; text-decoration:none; font-weight:700;">Empezar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios">
+        <div class="wrap">
+            <h2 style="text-align:center; margin-bottom:60px; font-size: 2.5rem;">Nuestros servicios</h2>
+            <div class="grid-3">
+                <div class="card" data-service="articulos" data-aos="fade-up">
+                    <div class="icon-box"><i data-lucide="file-text"></i></div>
+                    <h3>Capacitación</h3>
+                    <p>Formación continua y actualización docente con enfoque en tecnología educativa.</p>
+                </div>
+                <div class="card" data-service="libros" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i data-lucide="book-open"></i></div>
+                    <h3>Publicaciones</h3>
+                    <p>Edición y publicación de revistas académicas y libros educativos de alta calidad.</p>
+                </div>
+                <div class="card" data-service="capacitaciones" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i data-lucide="monitor"></i></div>
+                    <h3>Consultoría</h3>
+                    <p>Asesoría institucional para la transformación digital y curricular de organizaciones educativas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Dinámico -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close"><i data-lucide="x"></i></button>
+            <div class="modal-grid">
+                <div class="modal-text" id="modal-info"></div>
+                <img src="" class="modal-img" id="modal-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Nosotros -->
+    <section id="quienes" style="background: rgba(13,151,167,0.05);">
+        <div class="wrap">
+            <div class="nosotros-layout">
+                <div data-aos="fade-right">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Sobre <span style="color:var(--primary)">nosotros</span></h2>
+                    <p style="margin-bottom: 40px; color:var(--text-muted);">InnovAula es es una empresa consultora especializada en el fortalecimiento de capacidades de docentes y profesionales de diferentes áreas del conocimiento, diseñada para responder a los desafíos que impone la acelerada transformación tecnológica y social del siglo XXI.</p>
+                    
+                    <div class="mv-card">
+                        <div class="icon-box"><i data-lucide="target"></i></div>
+                        <div><h4>Misión</h4><p>Fortalecer las capacidades pedagógicas y tecnológicas de los educadores mediante servicios de capacitación especializados, publicaciones educativas de excelencia y consultoría estratégica, contribuyendo a la construcción de sistemas educativos más equitativos, innovadores y pertinentes.</p></div>
+                    </div>
+                    <div class="mv-card">
+                        <div class="icon-box"><i data-lucide="eye"></i></div>
+                        <div><h4>Visión</h4><p>Ser la empresa consultora líder en innovación educativa para 2030, reconocida por la calidad, pertinencia y el impacto transformador de sus servicios en la formación docente y la producción del conocimiento pedagógico.</p></div>
+                    </div>
+                </div>
+                <div class="card" style="background:var(--dark); color:white;" data-aos="fade-left">
+                    <h3>Nuestro trabajo</h3>
+                    <p style="margin: 20px 0; opacity: 0.8;">Realizamos un trabajo profesional con rigor académico en la producción y publicación de nuestros materiales. El equipo de InnovAula está conformado por maestros y comunicadores sociales con amplia experiencia en la creación, difusión y desarrollo de procesos de capacitación relacionados con las tecnologías educativas, garantizando contenidos de calidad, innovación y pertinencia educativa.</p>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1sQEG6doNeByZu_s9B5Tlkk0teAXbvLyu" style="width:100%; border-radius:15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biblioteca -->
+    <section id="biblioteca">
+        <div class="wrap">
+            <h2 style="text-align:center; margin-bottom:50px;">Biblioteca Académica</h2>
+        <div class="library-grid">
+            
+            <!-- Tarjeta 1: Estrategias para la producción de textos -->
+            <div class="book-card" data-aos="zoom-in">
+                <img src="https://lh3.googleusercontent.com/u/0/d/14pEHv3A0KUHSC6HCtiig9Vmsnd8AH9G9" alt="Portada del libro Estrategias para la producción de textos" class="book-img">
+                <div style="padding:20px;">
+                    <h4>Publica tu artículo en nuestro próximo número</h4>
+                    <a href="https://drive.google.com/file/d/1yOS_wdjBanhW-GHTLU37Grir-AkC082p/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-download">
+                        <i data-lucide="download"></i> Más información
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Metodología 2026 -->
+            <div class="book-card" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://lh3.googleusercontent.com/u/0/d/13FxkubALdvtmWe1nubKS_GXeJJIGC0LO" alt="Portada del libro Metodología 2026" class="book-img">
+                <div style="padding:20px;">
+                    <h4>Publica tu libro con Depósito Legal</h4>
+                    <a href="https://drive.google.com/file/d/1CWOora2AwmrH_lbtHXbPu3M8ME5XG1UA/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-download">
+                        <i data-lucide="download"></i> Más información
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Contacto -->
+<section id="contacto" style="padding: 80px 0;">
+    <div class="wrap">
+        <div class="contact-modern-container" data-aos="fade-up">
+            
+            <div class="contact-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">Contáctate con nosotros</h2>
+                <p style="opacity: 0.8; font-size: 1.1rem;">Elige tu plataforma favorita para comunicarte.</p>
+            </div>
+
+            <div class="social-actions-grid">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/59169261691" target="_blank" rel="noopener noreferrer" class="social-card whatsapp">
+                    <div class="social-icon">
+                        <i data-lucide="message-circle"></i>
+                    </div>
+                    <div class="social-text">
+                        <span>WhatsApp</span>
+                        <small>Respuesta inmediata</small>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/Innova.Aula" target="_blank" rel="noopener noreferrer" class="social-card facebook">
+                    <div class="social-icon">
+                        <i data-lucide="facebook"></i>
+                    </div>
+                    <div class="social-text">
+                        <span>Facebook</span>
+                        <small>Comunidad y noticias</small>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="social-card tiktok">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                    </div>
+                    <div class="social-text">
+                        <span>TikTok</span>
+                        <small>Contenido educativo</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="extra-info" style="text-align: center; margin-top: 40px; opacity: 0.6;">
+                <p>InnovAula | +591 69261691</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+    <footer style="text-align:center; padding:40px; opacity:0.6; font-size:0.9rem;">
+        © 2026 InnovAula | Innovación y Desarrollo
+    </footer>
+
+    <a href="https://wa.me/59169261691" class="wa-float" target="_blank"><i data-lucide="message-circle"></i></a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        lucide.createIcons();
+        AOS.init();
+
+        // Slider Logic
+        const slides = document.querySelectorAll('.slide');
+        const titles = ["Evoluciona tu forma <br> de aprender", "Convertimos ideas <br> en publicaciones de impacto", "Transformando la <br> Educación"];
+        const slideTitle = document.getElementById('slide-title');
+        let index = 0;
+
+        setInterval(() => {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+            slideTitle.style.opacity = 0;
+            setTimeout(() => { slideTitle.innerHTML = titles[index]; slideTitle.style.opacity = 1; }, 800);
+        }, 6000);
+
+        // Modal Logic (Se añade la propiedad 'link' con el formato de descarga directa)
+        const services = {
+            articulos: { 
+                t: "Capacitaciones", 
+                d: "• Desarrollar capacidades en el uso crítico y creativo de herramientas digitales educativas. <br> • Fortalecer habilidades metodológicas para entornos híbridos y virtuales de aprendizaje. <br> • Promover el pensamiento crítico, reflexivo e investigativo en la práctica docente.", 
+                i: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600",
+                link: "https://view.genially.com/6a09ed4363e32f30bc5284df" // <-- Reemplaza con tu ID
+            },
+            libros: { 
+                t: "Investigación y producción pedagógica", 
+                d: "• Producimos y difundimos materiales educativos de referencia para la práctica docente. <br> • Apoyamos la publicación de investigaciones pedagógicas y educativas de maestras y maestros. <br> • Generamos recursos didácticos contextualizados para distintos niveles y modalidades educativas. <br> Descarga la convocatoria a publicación de artículos de la revista InnovAula No. 1-2026: ", 
+                i: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600",
+                link: "https://drive.google.com/uc?export=download&id=1yOS_wdjBanhW-GHTLU37Grir-AkC082p" // <-- Reemplaza con tu ID
+            },
+            capacitaciones: { 
+                t: "Servicios de consultoría", 
+                d: "• Diagnóstico institucional en competencias digitales docentes. <br> • Diseño e implementación de planes de formación continua a medida. <br> • Asesoría en transformación curricular con integración de tecnología. <br> • Acompañamiento en procesos de acreditación y mejora de la calidad educativa. <br> • Consultoría para la creación de EVA institucionales y campus virtuales.", 
+                i: "https://lh3.googleusercontent.com/u/0/d/1xdcCzDE8Qsq_bXVXaGof95POk9Zc5nMQ",
+                link: "https://wa.me/59169261691" // <-- Reemplaza con tu ID
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        document.querySelectorAll('[data-service]').forEach(c => {
+            c.onclick = () => {
+                const s = services[c.dataset.service];
+                
+                // Modificado: Ahora el href utiliza ${s.link} dinámicamente
+                document.getElementById('modal-info').innerHTML = `
+                    <h2>${s.t}</h2>
+                    <p style="margin:20px 0;">${s.d}</p>
+                    <a href="${s.link}" target="_blank" style="background:var(--primary); color:white; padding:10px 20px; text-decoration:none; border-radius:8px;">Más información</a>
+                `; 
+                
+                document.getElementById('modal-img').src = s.i;
+                modal.classList.add('active');
+            }
+        });
+
+        document.querySelector('.modal-close').onclick = () => modal.classList.remove('active');
+
+        // Theme Toggle
+        document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark');
+    </script>
+</body>
+</html>
